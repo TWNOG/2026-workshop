@@ -29,7 +29,7 @@ export const translations = {
       subtitle:
         "與 APNIC Academy 連結的網路維運社群活動——\n聚焦網路工程、營運經驗、互聯交流與技術實務。",
       metaDate: "2026 年 5 月 13–15 日 09:30–17:30 UTC+8",
-      metaVenue: "臺大醫院國際會議中心四樓",
+      metaVenue: "財團法人台灣網路資訊中心（TWNIC）",
       registerBtn: "前往 APNIC Academy",
       scheduleBtn: "查看活動議程",
     },
@@ -229,9 +229,9 @@ export const translations = {
     venue: {
       label: "活動地點",
       title: "場地與交通",
-      name: "臺大醫院國際會議中心四樓",
-      address: "100 臺北市中正區徐州路 2 號",
-      transport1: "地點位於臺北市中正區徐州路，鄰近臺大醫院與善導寺生活圈",
+      name: "財團法人台灣網路資訊中心（TWNIC）",
+      address: "105034 臺北市松山區八德路四段 123 號三樓",
+      transport1: "地點位於臺北市松山區八德路四段，鄰近松山機場與南京三民站生活圈",
       transport2: "詳細交通方式請以 TWNOG 7 官方網站交通頁與現場公告為準",
       mapLink: "在 Google 地圖開啟 →",
     },
@@ -307,7 +307,7 @@ export const translations = {
       subtitle:
         "A network operations community event linked through APNIC Academy —\nfocused on engineering practice, operations experience, peering, and technical exchange.",
       metaDate: "13–15 May 2026, 09:30–17:30 UTC+8",
-      metaVenue: "NTUH International Convention Center, 4F",
+      metaVenue: "TWNIC, Taipei",
       registerBtn: "Open APNIC Academy",
       scheduleBtn: "View Schedule",
     },
@@ -507,11 +507,11 @@ export const translations = {
     venue: {
       label: "Location",
       title: "Venue & Transport",
-      name: "NTUH International Convention Center, 4F",
+      name: "Taiwan Network Information Center (TWNIC)",
       address:
-        "No. 2, Xuzhou Road, Zhongzheng District, Taipei City 100, Taiwan",
+        "3F, No. 123, Section 4, Bade Road, Songshan District, Taipei City 105034, Taiwan",
       transport1:
-        "Located on Xuzhou Road in Zhongzheng District, Taipei, near the NTU Hospital and Shandao Temple area",
+        "Located on Section 4 of Bade Road in Songshan District, Taipei, near Songshan Airport and Nanjing Sanmin Station",
       transport2:
         "Please refer to the TWNOG 7 official transport page and on-site notices for detailed directions",
       mapLink: "Open in Google Maps →",
