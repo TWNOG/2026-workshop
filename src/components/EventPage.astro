@@ -129,29 +129,24 @@ const strip2Imgs = getRandomImgs(strip2.length * 2);
           <p>{t.about.p2}</p>
           <p>{t.about.p3}</p>
           <div class="about-tags">
-            <span class="tag">BGP</span>
-            <span class="tag">IPv6</span>
-            <span class="tag">Routing Policy</span>
-            <span class="tag">Network Security</span>
-            <span class="tag">RPKI</span>
-            <span class="tag">Multihoming</span>
+            {t.about.tags.map((tag) => <span class="tag">{tag}</span>)}
           </div>
         </div>
         <div class="about-stats">
           <div class="stat-card">
-            <div class="stat-number">3</div>
+            <div class="stat-number">{t.about.stats.values.days}</div>
             <div class="stat-label">{t.about.stats.days}</div>
           </div>
           <div class="stat-card">
-            <div class="stat-number">30</div>
+            <div class="stat-number">{t.about.stats.values.participants}</div>
             <div class="stat-label">{t.about.stats.participants}</div>
           </div>
           <div class="stat-card">
-            <div class="stat-number">4</div>
+            <div class="stat-number">{t.about.stats.values.topics}</div>
             <div class="stat-label">{t.about.stats.topics}</div>
           </div>
           <div class="stat-card">
-            <div class="stat-number">100%</div>
+            <div class="stat-number">{t.about.stats.values.labs}</div>
             <div class="stat-label">{t.about.stats.labs}</div>
           </div>
         </div>
@@ -278,7 +273,7 @@ const strip2Imgs = getRandomImgs(strip2.length * 2);
         <div class="venue-map">
           <div class="map-embed-wrap">
             <iframe
-              src="https://maps.google.com/maps?q=25.04328,121.52867&hl=zh-TW&z=16&output=embed"
+              src="https://maps.google.com/maps?q=25.0408601,121.5206807&hl=zh-TW&z=16&output=embed"
               title={t.venue.name}
               loading="lazy"
               allowfullscreen
@@ -286,7 +281,7 @@ const strip2Imgs = getRandomImgs(strip2.length * 2);
             ></iframe>
           </div>
           <a
-            href="https://maps.google.com/?q=NTUH+International+Convention+Center+Taipei"
+            href="https://www.google.com/maps/search/?api=1&query=25.0408601%2C121.5206807"
             target="_blank"
             rel="noopener"
             class="map-link-ext"
@@ -325,10 +320,10 @@ const strip2Imgs = getRandomImgs(strip2.length * 2);
       <h2 class="register-title">{t.register.title}</h2>
       <p class="register-desc">{t.register.desc}</p>
       <div class="register-actions">
-        <a href="https://twnog.kktix.cc/events/2026twnog7" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
+        <a href={t.register.primaryHref} target="_blank" rel="noopener" class="btn btn-primary btn-lg">
           {t.register.btn}
         </a>
-        <a href="https://2026.twnog.net/" target="_blank" rel="noopener" class="btn btn-ghost-light btn-lg">
+        <a href={t.register.secondaryHref} target="_blank" rel="noopener" class="btn btn-ghost-light btn-lg">
           {t.register.btnAlt}
         </a>
       </div>
@@ -346,7 +341,7 @@ const strip2Imgs = getRandomImgs(strip2.length * 2);
         <span class="footer-year">· 2026</span>
       </div>
       <div class="footer-links">
-        <a href="https://academy.apnic.net" target="_blank" rel="noopener">APNIC Academy</a>
+        <a href="https://academy.apnic.net/en/events?id=a0BOc000003Mh1NMAS" target="_blank" rel="noopener">APNIC Academy</a>
         <a href="https://2026.twnog.net" target="_blank" rel="noopener">TWNOG 7</a>
         <a href="https://twnog.kktix.cc" target="_blank" rel="noopener">KKTIX</a>
         <a href={otherLangHref}>{otherLangLabel}</a>
