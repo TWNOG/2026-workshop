@@ -4,6 +4,7 @@ const apnicEventUrl =
   "https://academy.apnic.net/en/events?id=a0BOc000003Mh1NMAS";
 const twnogEventUrl = "https://2026.twnog.net/";
 const kktixUrl = "https://twnog.kktix.cc";
+const fellowshipUrl = "https://fellowship.twnog.net";
 
 export const translations = {
   zh: {
@@ -32,6 +33,7 @@ export const translations = {
       metaVenue: "財團法人台灣網路資訊中心（TWNIC）",
       registerBtn: "前往 APNIC Academy",
       scheduleBtn: "查看活動議程",
+      fellowshipBtn: "TWNOG Fellowship",
     },
 
     about: {
@@ -39,7 +41,7 @@ export const translations = {
       title: "第七屆台灣網路維運論壇",
       p1: "<strong>TWNOG 7</strong> 是台灣網路維運社群的年度論壇，並與 APNIC Academy 活動頁連結，歡迎網路維運者、工程師、研究人員、學生與相關專業人士參與。",
       p2: "TWNOG 是網路營運商、研究者與相關同好交流網路維運技術的平台，目標是凝聚社群、累積維運能量，並與國際其他 NOG 建立合作關係。",
-      p3: "本頁整理 APNIC Academy 指定活動頁、APNIC Fellowship 公開資訊、TWNOG 7 官方站與 KKTIX 活動頁；精確議程、講者與報名狀態請以官方連結公布內容為準。",
+      p3: "本頁整理 APNIC Academy 指定活動頁、TWNOG Fellowship 公開資訊、TWNOG 7 官方站與 KKTIX 活動頁；精確議程、講者與報名狀態請以官方連結公布內容為準。",
       tags: [
         "Network Operations",
         "Peering",
@@ -274,10 +276,11 @@ export const translations = {
       btn: "前往 APNIC Academy",
       btnAlt: "KKTIX 報名頁面",
       officialHref: twnogEventUrl,
-      note: "2026/05/18–20 · 臺北 · APNIC Fellowship 申請至 2026/04/24 23:59 UTC+8",
+      note: "2026/05/18–20 · 臺北 · TWNOG Fellowship 申請至 2026/04/24 23:59 UTC+8",
       primaryHref: apnicEventUrl,
       secondaryHref: kktixUrl,
       kktixHref: kktixUrl,
+      fellowshipHref: fellowshipUrl,
     },
 
     footer: {
@@ -311,6 +314,7 @@ export const translations = {
       metaVenue: "TWNIC, Taipei",
       registerBtn: "Open APNIC Academy",
       scheduleBtn: "View Schedule",
+      fellowshipBtn: "TWNOG Fellowship",
     },
 
     about: {
@@ -318,7 +322,7 @@ export const translations = {
       title: "Taiwan Network Operators' Group 7",
       p1: "<strong>TWNOG 7</strong> is the annual forum of the Taiwan Network Operators' Group and is linked through the APNIC Academy event page. Network operators, engineers, researchers, students, and related professionals are welcome to join.",
       p2: "TWNOG is a platform for network operators, researchers, and related practitioners to exchange Internet operations technologies, build local operational capability, and connect with other NOG communities.",
-      p3: "This page summarizes the specified APNIC Academy event link, APNIC Fellowship public information, the TWNOG 7 official site, and the KKTIX event page. Please use the official links for the latest agenda, speakers, registration, and ticket status.",
+      p3: "This page summarizes the specified APNIC Academy event link, TWNOG Fellowship public information, the TWNOG 7 official site, and the KKTIX event page. Please use the official links for the latest agenda, speakers, registration, and ticket status.",
       tags: [
         "Network Operations",
         "Peering",
@@ -555,10 +559,11 @@ export const translations = {
       btn: "Open APNIC Academy",
       btnAlt: "KKTIX Registration",
       officialHref: twnogEventUrl,
-      note: "18–20 May 2026 · Taipei · APNIC Fellowship applications close 24 April 2026, 23:59 UTC+8",
+      note: "18–20 May 2026 · Taipei · TWNOG Fellowship applications close 24 April 2026, 23:59 UTC+8",
       primaryHref: apnicEventUrl,
       secondaryHref: kktixUrl,
       kktixHref: kktixUrl,
+      fellowshipHref: fellowshipUrl,
     },
 
     footer: {
