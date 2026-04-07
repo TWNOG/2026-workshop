@@ -1,0 +1,79 @@
+---
+import type { Translations } from '../i18n/translations';
+
+interface Props {
+  t: Translations;
+}
+
+const { t } = Astro.props;
+---
+
+<section class="section" id="course">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">{t.course.label}</span>
+      <h2 class="section-title">{t.course.title}</h2>
+      <p class="section-desc">{t.course.description}</p>
+    </div>
+    <div class="course-grid">
+      <div class="course-card">
+        <div class="course-card-header">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          <h3>{t.course.objectives.title}</h3>
+        </div>
+        <ul class="course-list">
+          {t.course.objectives.items.map(item => <li>{item}</li>)}
+        </ul>
+      </div>
+      <div class="course-card">
+        <div class="course-card-header">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+          <h3>{t.course.outline.title}</h3>
+        </div>
+        <ul class="course-list">
+          {t.course.outline.items.map(item => <li>{item}</li>)}
+        </ul>
+      </div>
+      <div class="course-card">
+        <div class="course-card-header">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <h3>{t.course.audience.title}</h3>
+        </div>
+        <ul class="course-list">
+          {t.course.audience.items.map(item => <li>{item}</li>)}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .course-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); gap: 2rem; margin-top: 3rem; }
+  .course-card {
+    background: #fff;
+    border: 0.0625rem solid var(--border);
+    border-radius: var(--radius);
+    padding: 2.5rem;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .course-card-header { display: flex; align-items: center; gap: 0.75rem; color: var(--blue-mid); }
+  .course-card-header h3 { font-size: 1.1rem; font-weight: 700; color: var(--blue-dark); }
+  .course-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+  .course-list li {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    position: relative;
+    padding-left: 1.25rem;
+  }
+  .course-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--blue-light);
+    font-weight: 800;
+  }
+</style>

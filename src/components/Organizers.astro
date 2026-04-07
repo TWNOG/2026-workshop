@@ -1,0 +1,63 @@
+---
+import type { Translations } from '../i18n/translations';
+
+interface Props {
+  t: Translations;
+}
+
+const { t } = Astro.props;
+---
+
+<section class="section section-alt" id="organizers">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">{t.organizers.label}</span>
+      <h2 class="section-title">{t.organizers.title}</h2>
+    </div>
+    <div class="org-grid">
+      {t.organizers.orgs.map((org) => (
+        <div class="org-card">
+          <div class="org-logo-wrap">
+            <img src={`/org/${org.color}.svg`} alt={org.abbr} class="org-logo-img" />
+          </div>
+          <p>{org.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .org-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1.75rem; }
+  .org-card {
+    background: #fff;
+    border: 0.0625rem solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem 1.75rem;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .org-card:hover {
+    transform: translateY(-0.25rem) scale(1.03);
+    box-shadow: var(--shadow-lg);
+  }
+  .org-logo-wrap {
+    height: 4.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+  }
+  .org-logo-img {
+    max-height: 3.5rem;
+    max-width: 100%;
+    width: auto;
+    object-fit: contain;
+  }
+  .org-card p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.65; }
+
+  @media (max-width: 48rem) {
+    .org-grid { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,0 +1,58 @@
+---
+import type { Translations } from '../i18n/translations';
+
+interface Props {
+  t: Translations;
+  otherLangHref: string;
+  otherLangLabel: string;
+}
+
+const { t, otherLangHref, otherLangLabel } = Astro.props;
+---
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <span class="brand-apnic">APNIC</span>
+      <span class="brand-sep">×</span>
+      <span class="brand-twnog">TWNOG 7</span>
+      <span class="footer-year">· 2026</span>
+    </div>
+    <div class="footer-links">
+      <a href="https://academy.apnic.net/en/events?id=a0BOc000003Mh1NMAS" target="_blank" rel="noopener">APNIC Academy</a>
+      <a href={t.register.officialHref} target="_blank" rel="noopener">{t.nav.official}</a>
+      <a href={t.register.kktixHref} target="_blank" rel="noopener">KKTIX</a>
+      <a href={otherLangHref}>{otherLangLabel}</a>
+    </div>
+    <p class="footer-copy">{t.footer.copy}</p>
+  </div>
+</footer>
+
+<style>
+  .container {
+    max-width: 68.75rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .footer { background: #0A0F1E; padding: 2.5rem 0; }
+  .footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .footer-brand { display: flex; align-items: center; gap: 0.5rem; font-weight: 700; font-size: 1rem; color: #fff; }
+  .brand-apnic { color: #fff; }
+  .brand-sep { color: rgba(255,255,255,0.4); }
+  .brand-twnog { color: #7EC8E3; }
+  .footer-year { color: rgba(255,255,255,0.3); font-weight: 400; }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { color: rgba(255,255,255,0.5); font-size: 0.875rem; transition: color 0.2s; text-decoration: none; }
+  .footer-links a:hover { color: #fff; }
+  .footer-copy { color: rgba(255,255,255,0.3); font-size: 0.8rem; width: 100%; margin-top: 1rem; }
+
+  @media (max-width: 48rem) {
+    .footer-inner { flex-direction: column; align-items: flex-start; }
+  }
+</style>

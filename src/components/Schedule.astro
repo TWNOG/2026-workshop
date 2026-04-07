@@ -1,0 +1,145 @@
+---
+import type { Translations } from '../i18n/translations';
+
+interface Props {
+  t: Translations;
+}
+
+const { t } = Astro.props;
+---
+
+<section class="section section-alt" id="schedule">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">{t.schedule.label}</span>
+      <h2 class="section-title">{t.schedule.title}</h2>
+    </div>
+    
+    <div class="schedule-tabs-nav">
+      {t.schedule.days.map((day, idx) => (
+        <button 
+          class={`tab-btn ${idx === 0 ? 'active' : ''}`} 
+          data-day={idx}
+        >
+          <span class="tab-day">{day.dayName}</span>
+          <span class="tab-date">{day.date.split('/')[1]}/{day.date.split('/')[2]}</span>
+        </button>
+      ))}
+    </div>
+
+    <div class="schedule-content-wrap">
+      {t.schedule.days.map((day, idx) => (
+        <div 
+          class={`schedule-day-pane ${idx === 0 ? 'active' : ''}`} 
+          id={`day-pane-${idx}`}
+        >
+          <div class="schedule-items-list">
+            {day.items.map((item) => (
+              <div class="schedule-entry">
+                <div class="entry-time">{item.time}</div>
+                <div class="entry-detail">
+                  <div class="entry-title">{item.title}</div>
+                  {item.speaker && (
+                    <div class="entry-speaker">
+                      {item.speaker} <span class="speaker-role">· {item.speakerTitle}</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  // Schedule Tabs
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const panes = document.querySelectorAll('.schedule-day-pane');
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const dayIdx = btn.getAttribute('data-day');
+      
+      // Update buttons
+      tabBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      // Update panes
+      panes.forEach(p => p.classList.remove('active'));
+      const activePane = document.getElementById(`day-pane-${dayIdx}`);
+      if (activePane) activePane.classList.add('active');
+    });
+  });
+</script>
+
+<style>
+  .schedule-tabs-nav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+  .tab-btn {
+    flex: 1;
+    max-width: 12rem;
+    padding: 1rem;
+    background: #fff;
+    border: 0.0625rem solid var(--border);
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .tab-btn:hover { border-color: var(--blue-light); background: var(--blue-pale); }
+  .tab-btn.active {
+    background: var(--blue-dark);
+    border-color: var(--blue-dark);
+    color: #fff;
+    box-shadow: 0 0.5rem 1rem rgba(0, 37, 122, 0.15);
+  }
+  .tab-day { font-size: 1rem; font-weight: 800; }
+  .tab-date { font-size: 0.8rem; opacity: 0.8; font-weight: 500; }
+  .tab-btn.active .tab-date { opacity: 0.9; }
+
+  .schedule-content-wrap {
+    background: #fff;
+    border: 0.0625rem solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .schedule-day-pane { display: none; }
+  .schedule-day-pane.active { display: block; }
+  
+  .schedule-items-list { padding: 0.5rem 0; }
+  .schedule-entry {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.25rem 2rem;
+    border-bottom: 0.0625rem solid var(--border);
+  }
+  .schedule-entry:last-child { border-bottom: none; }
+  .entry-time {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--blue-light);
+    min-width: 4rem;
+    padding-top: 0.125rem;
+  }
+  .entry-title { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 0.25rem; line-height: 1.5; }
+  .entry-speaker { font-size: 0.8rem; color: var(--text-muted); }
+  .speaker-role { font-weight: 400; opacity: 0.8; }
+
+  @media (max-width: 48rem) {
+    .schedule-tabs-nav { gap: 0.5rem; }
+    .tab-btn { padding: 0.75rem 0.5rem; }
+    .tab-day { font-size: 0.9rem; }
+    .schedule-entry { padding: 1rem 1.25rem; gap: 1rem; }
+    .entry-time { min-width: 3.5rem; font-size: 0.8rem; }
+  }
+</style>

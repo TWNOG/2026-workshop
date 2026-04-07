@@ -1,0 +1,167 @@
+---
+import type { Translations } from '../i18n/translations';
+
+interface Props {
+  t: Translations;
+}
+
+const { t } = Astro.props;
+---
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="container hero-content">
+    <div class="hero-badges">
+      <span class="badge">{t.hero.badge1}</span>
+      <span class="badge badge-outline">{t.hero.badge2}</span>
+    </div>
+    <h1 class="hero-title">
+      {t.hero.title}<br /><span class="hero-title-accent">{t.hero.titleAccent}</span>
+    </h1>
+    <p class="hero-subtitle">
+      {t.hero.subtitle.split('\n').map((line, i) => (
+        <>{line}{i === 0 && <br />}</>
+      ))}
+    </p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <span>{t.hero.metaDate}</span>
+      </div>
+      <div class="hero-meta-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>{t.hero.metaVenue}</span>
+      </div>
+    </div>
+    <div class="hero-actions">
+      <a href={t.register.kktixHref} target="_blank" rel="noopener" class="btn btn-primary">{t.hero.registerBtn}</a>
+      <a href="#schedule" class="btn btn-ghost-light">{t.hero.scheduleBtn}</a>
+      <a href={t.register.officialHref} target="_blank" rel="noopener" class="btn btn-ghost-light">{t.nav.official}</a>
+    </div>
+  </div>
+  <div class="hero-wave">
+    <!-- back layer: slowest, semi-transparent -->
+    <div class="wave-track wave-track-1">
+      <svg viewBox="0 0 1440 90" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,55 C240,15 480,80 720,45 C960,10 1200,75 1440,55 L1440,90 L0,90 Z" fill="rgba(255,255,255,0.2)"/></svg>
+      <svg viewBox="0 0 1440 90" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,55 C240,15 480,80 720,45 C960,10 1200,75 1440,55 L1440,90 L0,90 Z" fill="rgba(255,255,255,0.2)"/></svg>
+    </div>
+    <!-- mid layer: medium speed, more opaque -->
+    <div class="wave-track wave-track-2">
+      <svg viewBox="0 0 1440 90" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,45 C360,85 720,10 1080,60 C1260,80 1380,30 1440,45 L1440,90 L0,90 Z" fill="rgba(255,255,255,0.45)"/></svg>
+      <svg viewBox="0 0 1440 90" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,45 C360,85 720,10 1080,60 C1260,80 1380,30 1440,45 L1440,90 L0,90 Z" fill="rgba(255,255,255,0.45)"/></svg>
+    </div>
+    <!-- front layer: fastest, solid white — defines the clean edge -->
+    <div class="wave-track wave-track-3">
+      <svg viewBox="0 0 1440 90" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,40 C280,80 560,5 840,50 C1120,90 1300,20 1440,40 L1440,90 L0,90 Z" fill="#FFFFFF"/></svg>
+      <svg viewBox="0 0 1440 90" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,40 C280,80 560,5 840,50 C1120,90 1300,20 1440,40 L1440,90 L0,90 Z" fill="#FFFFFF"/></svg>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #00257A 0%, #003DA5 50%, #0054A6 100%);
+    overflow: hidden;
+    padding-top: 4rem;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 80% 20%, rgba(0,153,214,0.25) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 60% at 10% 80%, rgba(0,80,160,0.4) 0%, transparent 60%);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    padding: 5rem 1.5rem;
+  }
+  .hero-badges {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    margin-bottom: 1.5rem;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.875rem;
+    border-radius: 6.25rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    background: var(--blue-light);
+    color: #fff;
+  }
+  .badge-outline {
+    background: transparent;
+    border: 0.09375rem solid rgba(255,255,255,0.4);
+    color: rgba(255,255,255,0.9);
+  }
+  .hero-title {
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    color: #fff;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+  }
+  .hero-title-accent { color: #7EC8E3; }
+  .hero-subtitle {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: rgba(255,255,255,0.75);
+    max-width: 35rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+  }
+  .hero-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(255,255,255,0.85);
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+  .hero-meta-item svg { flex-shrink: 0; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+  .hero-wave {
+    position: absolute;
+    bottom: -0.0625rem;
+    left: 0;
+    right: 0;
+    height: 5.625rem;
+    overflow: hidden;
+  }
+  .wave-track {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    width: 200%;
+  }
+  .wave-track svg {
+    width: 50%;
+    height: 5.625rem;
+    display: block;
+    flex-shrink: 0;
+  }
+  .wave-track-1 { animation: wave-scroll 18s linear infinite; }
+  .wave-track-2 { animation: wave-scroll 11s linear infinite reverse; }
+  .wave-track-3 { animation: wave-scroll 7s linear infinite; }
+
+  @keyframes wave-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+</style>

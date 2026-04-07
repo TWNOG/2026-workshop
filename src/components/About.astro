@@ -1,0 +1,46 @@
+---
+import type { Translations } from '../i18n/translations';
+
+interface Props {
+  t: Translations;
+}
+
+const { t } = Astro.props;
+---
+
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">{t.about.label}</span>
+      <h2 class="section-title">{t.about.title}</h2>
+    </div>
+    <div class="about-text">
+      <p set:html={t.about.p1} />
+      <p>{t.about.p2}</p>
+      <p>{t.about.p3}</p>
+      <div class="about-tags">
+        {t.about.tags.map((tag) => <span class="tag">{tag}</span>)}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-text p {
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    font-size: 1.05rem;
+  }
+  .about-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+  .tag {
+    display: inline-block;
+    padding: 0.3125rem 0.875rem;
+    border-radius: 6.25rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    background: var(--blue-pale);
+    color: var(--blue-mid);
+    border: 0.0625rem solid rgba(0,84,166,0.15);
+  }
+</style>
