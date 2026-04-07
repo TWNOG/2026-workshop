@@ -1,0 +1,8 @@
+---
+import EventPage from '../../components/EventPage.astro';
+import { getTranslations } from '../../i18n/translations';
+
+const t = getTranslations('en');
+---
+
+<EventPage lang="en" t={t} />
