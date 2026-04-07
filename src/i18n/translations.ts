@@ -28,7 +28,7 @@ export const translations = {
       titleAccent: "2026",
       subtitle:
         "與 APNIC Academy 連結的網路維運社群活動——\n聚焦網路工程、營運經驗、互聯交流與技術實務。",
-      metaDate: "2026 年 5 月 13–15 日 09:30–17:30 UTC+8",
+      metaDate: "2026 年 5 月 18–20 日 09:30–17:30 UTC+8",
       metaVenue: "財團法人台灣網路資訊中心（TWNIC）",
       registerBtn: "前往 APNIC Academy",
       scheduleBtn: "查看活動議程",
@@ -92,7 +92,7 @@ export const translations = {
       title: "活動議程",
       days: [
         {
-          date: "2026/05/13",
+          date: "2026/05/18",
           dayName: "Day 1",
           items: [
             {
@@ -140,7 +140,7 @@ export const translations = {
           ],
         },
         {
-          date: "2026/05/14",
+          date: "2026/05/19",
           dayName: "Day 2",
           items: [
             {
@@ -176,7 +176,7 @@ export const translations = {
           ],
         },
         {
-          date: "2026/05/15",
+          date: "2026/05/20",
           dayName: "Day 3",
           items: [
             {
@@ -274,7 +274,7 @@ export const translations = {
       btn: "前往 APNIC Academy",
       btnAlt: "KKTIX 報名頁面",
       officialHref: twnogEventUrl,
-      note: "2026/05/15 · 臺北 · APNIC Fellowship 申請至 2026/04/24 23:59 UTC+8",
+      note: "2026/05/18–20 · 臺北 · APNIC Fellowship 申請至 2026/04/24 23:59 UTC+8",
       primaryHref: apnicEventUrl,
       secondaryHref: kktixUrl,
       kktixHref: kktixUrl,
@@ -289,7 +289,7 @@ export const translations = {
     lang: "en",
     siteTitle: "APNIC Academy × TWNOG 7 | 2026",
     siteDescription:
-      "APNIC Academy event information for TWNOG 7, held on 15 May 2026 at NTUH International Convention Center, Taipei",
+      "APNIC Academy event information for TWNOG 7, held on 18–20 May 2026 at TWNIC, Taipei",
 
     nav: {
       about: "About",
@@ -307,7 +307,7 @@ export const translations = {
       titleAccent: "2026",
       subtitle:
         "A network operations community event linked through APNIC Academy —\nfocused on engineering practice, operations experience, peering, and technical exchange.",
-      metaDate: "13–15 May 2026, 09:30–17:30 UTC+8",
+      metaDate: "18–20 May 2026, 09:30–17:30 UTC+8",
       metaVenue: "TWNIC, Taipei",
       registerBtn: "Open APNIC Academy",
       scheduleBtn: "View Schedule",
@@ -371,7 +371,7 @@ export const translations = {
       title: "Event Schedule",
       days: [
         {
-          date: "2026/05/13",
+          date: "2026/05/18",
           dayName: "Day 1",
           items: [
             {
@@ -419,7 +419,7 @@ export const translations = {
           ],
         },
         {
-          date: "2026/05/14",
+          date: "2026/05/19",
           dayName: "Day 2",
           items: [
             {
@@ -455,7 +455,7 @@ export const translations = {
           ],
         },
         {
-          date: "2026/05/15",
+          date: "2026/05/20",
           dayName: "Day 3",
           items: [
             {
@@ -555,7 +555,7 @@ export const translations = {
       btn: "Open APNIC Academy",
       btnAlt: "KKTIX Registration",
       officialHref: twnogEventUrl,
-      note: "15 May 2026 · Taipei · APNIC Fellowship applications close 24 April 2026, 23:59 UTC+8",
+      note: "18–20 May 2026 · Taipei · APNIC Fellowship applications close 24 April 2026, 23:59 UTC+8",
       primaryHref: apnicEventUrl,
       secondaryHref: kktixUrl,
       kktixHref: kktixUrl,
