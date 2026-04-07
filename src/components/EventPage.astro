@@ -1,6 +1,8 @@
 ---
 import type { Lang, Translations } from '../i18n/translations';
 import Layout from '../layouts/Layout.astro';
+import fs from 'node:fs';
+import path from 'node:path';
 
 interface Props {
   lang: Lang;
@@ -12,11 +14,27 @@ const otherLang = lang === 'zh' ? 'en' : 'zh';
 const otherLangLabel = lang === 'zh' ? 'EN' : '中文';
 const otherLangHref = lang === 'zh' ? '/en/' : '/';
 
-const camSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>`;
-
-// photo slot widths (px) — 8 unique sizes, repeated twice for seamless loop
+// photo slot widths (px) — 8 unique sizes
 const strip1 = [360, 210, 300, 240, 400, 220, 340, 260];
 const strip2 = [280, 380, 220, 310, 250, 360, 200, 330];
+
+// Get all .webp images from public/img
+const imgDir = path.join(process.cwd(), 'public/img');
+const imgFiles = fs.readdirSync(imgDir).filter(f => f.endsWith('.webp'));
+const images = imgFiles.map(f => `/img/${f}`);
+
+// Helper to get random subset/repeat of images
+function getRandomImgs(count: number) {
+  let result: string[] = [];
+  while (result.length < count) {
+    const shuffled = [...images].sort(() => Math.random() - 0.5);
+    result = [...result, ...shuffled];
+  }
+  return result.slice(0, count);
+}
+
+const strip1Imgs = getRandomImgs(strip1.length * 2);
+const strip2Imgs = getRandomImgs(strip2.length * 2);
 ---
 
 <Layout title={t.siteTitle} description={t.siteDescription} lang={t.lang}>
@@ -144,9 +162,9 @@ const strip2 = [280, 380, 220, 310, 250, 360, 200, 330];
   <!-- Marquee strip 1 -->
   <div class="photo-marquee marquee-on-white">
     <div class="marquee-track marquee-left">
-      {[...strip1, ...strip1].map((w) => (
-        <div class="marquee-item" style={`width:${w}px`}>
-          <Fragment set:html={camSvg} />
+      {strip1Imgs.map((src, i) => (
+        <div class="marquee-item" style={`width:${strip1[i % strip1.length]}px`}>
+          <img src={src} alt="" loading="lazy" />
         </div>
       ))}
     </div>
@@ -225,9 +243,9 @@ const strip2 = [280, 380, 220, 310, 250, 360, 200, 330];
   <!-- Marquee strip 2 -->
   <div class="photo-marquee marquee-on-alt">
     <div class="marquee-track marquee-right">
-      {[...strip2, ...strip2].map((w) => (
-        <div class="marquee-item" style={`width:${w}px`}>
-          <Fragment set:html={camSvg} />
+      {strip2Imgs.map((src, i) => (
+        <div class="marquee-item" style={`width:${strip2[i % strip2.length]}px`}>
+          <img src={src} alt="" loading="lazy" />
         </div>
       ))}
     </div>
@@ -768,6 +786,11 @@ const strip2 = [280, 380, 220, 310, 250, 360, 200, 330];
     color: #b0c4d8;
     overflow: hidden;
     transition: background 0.25s;
+  }
+  .marquee-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
   .marquee-item:hover { background: #cddbe8; }
 
