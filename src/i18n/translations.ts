@@ -39,18 +39,6 @@ export const translations = {
       p2: "TWNOG 是網路營運商、研究者與相關同好交流網路維運技術的平台，目標是凝聚社群、累積維運能量，並與國際其他 NOG 建立合作關係。",
       p3: "本頁整理 APNIC Academy 指定活動頁、APNIC Fellowship 公開資訊、TWNOG 7 官方站與 KKTIX 活動頁；精確議程、講者與報名狀態請以官方連結公布內容為準。",
       tags: ["Network Operations", "Peering", "BGP", "IPv6", "Security", "Community"],
-      stats: {
-        values: {
-          days: "1",
-          participants: "5/15",
-          topics: "5",
-          labs: "雙語",
-        },
-        days: "活動日",
-        participants: "活動日期",
-        topics: "活動亮點",
-        labs: "中英文資訊",
-      },
     },
 
     schedule: {
@@ -249,18 +237,6 @@ export const translations = {
       p2: "TWNOG is a platform for network operators, researchers, and related practitioners to exchange Internet operations technologies, build local operational capability, and connect with other NOG communities.",
       p3: "This page summarizes the specified APNIC Academy event link, APNIC Fellowship public information, the TWNOG 7 official site, and the KKTIX event page. Please use the official links for the latest agenda, speakers, registration, and ticket status.",
       tags: ["Network Operations", "Peering", "BGP", "IPv6", "Security", "Community"],
-      stats: {
-        values: {
-          days: "1",
-          participants: "May 15",
-          topics: "5",
-          labs: "EN/ZH",
-        },
-        days: "Event Day",
-        participants: "Event Date",
-        topics: "Highlights",
-        labs: "Bilingual Info",
-      },
     },
 
     schedule: {
