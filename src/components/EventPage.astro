@@ -12,7 +12,11 @@ const otherLang = lang === 'zh' ? 'en' : 'zh';
 const otherLangLabel = lang === 'zh' ? 'EN' : '中文';
 const otherLangHref = lang === 'zh' ? '/en/' : '/';
 
-const camSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>`;
+const camSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>`;
+
+// photo slot widths (px) — 8 unique sizes, repeated twice for seamless loop
+const strip1 = [360, 210, 300, 240, 400, 220, 340, 260];
+const strip2 = [280, 380, 220, 310, 250, 360, 200, 330];
 ---
 
 <Layout title={t.siteTitle} description={t.siteDescription} lang={t.lang}>
@@ -25,11 +29,10 @@ const camSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" v
         <span class="brand-sep">×</span>
         <span class="brand-twnog">TWNOG 7</span>
       </div>
-      <ul class="nav-links">
+      <ul class="nav-links" id="nav-links">
         <li><a href="#about">{t.nav.about}</a></li>
         <li><a href="#schedule">{t.nav.schedule}</a></li>
         <li><a href="#speakers">{t.nav.speakers}</a></li>
-        <li><a href="#photos">{t.nav.photos}</a></li>
         <li><a href="#venue">{t.nav.venue}</a></li>
         <li>
           <a href={otherLangHref} class="lang-toggle" aria-label={`Switch to ${otherLang}`}>
@@ -39,6 +42,9 @@ const camSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" v
         </li>
         <li><a href="#register" class="nav-cta">{t.nav.register}</a></li>
       </ul>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
 
@@ -135,6 +141,17 @@ const camSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" v
     </div>
   </section>
 
+  <!-- Marquee strip 1 -->
+  <div class="photo-marquee marquee-on-white">
+    <div class="marquee-track marquee-left">
+      {[...strip1, ...strip1].map((w) => (
+        <div class="marquee-item" style={`width:${w}px`}>
+          <Fragment set:html={camSvg} />
+        </div>
+      ))}
+    </div>
+  </div>
+
   <!-- Schedule -->
   <section class="section section-alt" id="schedule">
     <div class="container">
@@ -173,16 +190,28 @@ const camSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" v
         <span class="section-label">{t.speakers.label}</span>
         <h2 class="section-title">{t.speakers.title}</h2>
       </div>
-      <div class="speakers-grid">
-        {t.speakers.people.map((person, i) => (
+      <div class="speakers-list">
+        {t.speakers.people.map((person) => (
           <div class="speaker-card">
-            <div class={`speaker-avatar speaker-avatar-${i + 1}`}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            </div>
-            <div class="speaker-info">
-              <h3 class="speaker-name">{person.name}</h3>
-              <p class="speaker-role">{person.role}</p>
-              <p class="speaker-bio">{person.bio}</p>
+            <div class="speaker-right">
+              <div class="speaker-id">
+                <div class="speaker-name-row">
+                  <h3 class="speaker-name">{person.name}</h3>
+                  <span class="speaker-org">{person.org}</span>
+                </div>
+                <p class="speaker-role">{person.role}</p>
+              </div>
+              <div class="speaker-highlights">
+                {person.highlights.map((h) => (
+                  <div class="speaker-highlight">
+                    <span class="highlight-value">{h.value}</span>
+                    <span class="highlight-label">{h.label}</span>
+                  </div>
+                ))}
+              </div>
+              <div class="speaker-bio">
+                {person.details.map((para) => <p>{para}</p>)}
+              </div>
               <div class="speaker-tags">
                 {person.tags.map((tag) => <span class="tag tag-sm">{tag}</span>)}
               </div>
@@ -193,62 +222,16 @@ const camSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" v
     </div>
   </section>
 
-  <!-- Photos -->
-  <section class="section section-alt" id="photos">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-label">{t.photos.label}</span>
-        <h2 class="section-title">{t.photos.title}</h2>
-        <p class="section-desc">{t.photos.desc}</p>
-      </div>
-
-      <div class="photo-hero">
-        <div class="photo-placeholder photo-placeholder-hero">
-          <Fragment set:html={camSvg} />
-          <span>{t.photos.featured}</span>
-        </div>
-      </div>
-
-      <div class="photo-grid">
-        <div class="photo-placeholder photo-tall">
+  <!-- Marquee strip 2 -->
+  <div class="photo-marquee marquee-on-alt">
+    <div class="marquee-track marquee-right">
+      {[...strip2, ...strip2].map((w) => (
+        <div class="marquee-item" style={`width:${w}px`}>
           <Fragment set:html={camSvg} />
         </div>
-        <div class="photo-col">
-          <div class="photo-placeholder"><Fragment set:html={camSvg} /></div>
-          <div class="photo-placeholder"><Fragment set:html={camSvg} /></div>
-        </div>
-        <div class="photo-placeholder photo-tall">
-          <Fragment set:html={camSvg} />
-        </div>
-      </div>
-
-      <div class="photo-row-3">
-        <div class="photo-placeholder"><Fragment set:html={camSvg} /></div>
-        <div class="photo-placeholder"><Fragment set:html={camSvg} /></div>
-        <div class="photo-placeholder"><Fragment set:html={camSvg} /></div>
-      </div>
-
-      <div class="photo-grid-alt">
-        <div class="photo-placeholder photo-wide">
-          <Fragment set:html={camSvg} />
-          <span>{t.photos.group}</span>
-        </div>
-        <div class="photo-col">
-          <div class="photo-placeholder photo-sm"><Fragment set:html={camSvg} /></div>
-          <div class="photo-placeholder photo-sm"><Fragment set:html={camSvg} /></div>
-        </div>
-      </div>
-
-      <div class="photo-row-4">
-        <div class="photo-placeholder photo-sq"><Fragment set:html={camSvg} /></div>
-        <div class="photo-placeholder photo-sq"><Fragment set:html={camSvg} /></div>
-        <div class="photo-placeholder photo-sq"><Fragment set:html={camSvg} /></div>
-        <div class="photo-placeholder photo-sq"><Fragment set:html={camSvg} /></div>
-      </div>
-
-      <p class="photo-note">{t.photos.note}</p>
+      ))}
     </div>
-  </section>
+  </div>
 
   <!-- Venue -->
   <section class="section" id="venue">
@@ -356,6 +339,24 @@ const camSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" v
 
 </Layout>
 
+<script>
+  const btn = document.getElementById('nav-hamburger');
+  const menu = document.getElementById('nav-links');
+  if (btn && menu) {
+    btn.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(open));
+    });
+    // close on any nav link click
+    menu.querySelectorAll('a').forEach(a =>
+      a.addEventListener('click', () => {
+        menu.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      })
+    );
+  }
+</script>
+
 <style>
   /* ── Layout ── */
   .container {
@@ -448,11 +449,13 @@ const camSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" v
   }
   .hero-badges {
     display: flex;
+    align-items: center;
     gap: 10px;
     margin-bottom: 24px;
   }
   .badge {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     padding: 4px 14px;
     border-radius: 100px;
     font-size: 0.8rem;
@@ -676,86 +679,97 @@ const camSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" v
   .schedule-content p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; }
 
   /* ── Speakers ── */
-  .speakers-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .speakers-list { display: flex; flex-direction: column; gap: 40px; }
   .speaker-card {
     background: #fff;
     border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 32px;
+    border-radius: 16px;
     box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+  .speaker-card:hover { box-shadow: var(--shadow-lg); }
+
+  /* speaker info */
+  .speaker-right {
+    padding: 40px 44px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    transition: box-shadow 0.2s, transform 0.2s;
+    gap: 24px;
   }
-  .speaker-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
-  .speaker-avatar {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
+  .speaker-id { display: flex; flex-direction: column; gap: 6px; }
+  .speaker-name-row {
     display: flex;
     align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
+    flex-wrap: wrap;
+    gap: 12px;
   }
-  .speaker-avatar-1 { background: linear-gradient(135deg, #00257A, #0099D6); color: #fff; }
-  .speaker-avatar-2 { background: linear-gradient(135deg, #0054A6, #00C4A0); color: #fff; }
-  .speaker-name { font-size: 1.25rem; font-weight: 700; color: var(--blue-dark); margin-bottom: 4px; }
-  .speaker-role { font-size: 0.85rem; color: var(--blue-light); font-weight: 600; margin-bottom: 10px; }
-  .speaker-bio { font-size: 0.9rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 14px; }
+  .speaker-name { font-size: 1.6rem; font-weight: 800; color: var(--blue-dark); line-height: 1.1; }
+  .speaker-org {
+    display: inline-block;
+    padding: 3px 12px;
+    background: var(--blue-dark);
+    color: #fff;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  .speaker-role { font-size: 0.92rem; color: var(--text-muted); font-weight: 500; }
+
+  .speaker-highlights {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    padding: 16px 20px;
+    background: var(--bg-alt);
+    border-radius: 10px;
+    border: 1px solid var(--border);
+  }
+  .speaker-highlight { display: flex; flex-direction: column; gap: 2px; }
+  .highlight-value { font-size: 1.1rem; font-weight: 800; color: var(--blue-mid); }
+  .highlight-label { font-size: 0.78rem; color: var(--text-muted); }
+
+  .speaker-bio { display: flex; flex-direction: column; gap: 12px; }
+  .speaker-bio p { font-size: 0.97rem; color: var(--text-muted); line-height: 1.8; }
+  .speaker-bio p:first-child { font-size: 1.02rem; color: var(--text); font-weight: 500; }
+
   .speaker-tags { display: flex; flex-wrap: wrap; gap: 6px; }
 
-  /* ── Photos ── */
-  .photo-placeholder {
-    background: var(--border);
-    border-radius: var(--radius);
+  /* ── Photo Marquee ── */
+  .photo-marquee {
+    overflow: hidden;
+    padding: 40px 0;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 7%, black 93%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 7%, black 93%, transparent 100%);
+  }
+  .marquee-on-white { background: var(--bg); }
+  .marquee-on-alt   { background: var(--bg-alt); }
+
+  .marquee-track {
     display: flex;
-    flex-direction: column;
+    gap: 14px;
+    width: max-content;
+  }
+  .marquee-left  { animation: mq-left  38s linear infinite; }
+  .marquee-right { animation: mq-right 30s linear infinite; }
+
+  @keyframes mq-left  { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes mq-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+
+  .marquee-item {
+    height: 220px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: var(--border);
+    display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    color: #9AABBE;
-    font-size: 0.82rem;
-    font-weight: 500;
+    color: #b0c4d8;
     overflow: hidden;
-    transition: background 0.2s;
+    transition: background 0.25s;
   }
-  .photo-placeholder:hover { background: #D8E4EF; }
-  .photo-hero { margin-bottom: 16px; }
-  .photo-placeholder-hero { height: 480px; font-size: 1rem; }
-  .photo-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 16px;
-    margin-bottom: 16px;
-  }
-  .photo-tall { min-height: 360px; }
-  .photo-col { display: flex; flex-direction: column; gap: 16px; }
-  .photo-col .photo-placeholder { flex: 1; min-height: 160px; }
-  .photo-row-3 {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 16px;
-    margin-bottom: 16px;
-  }
-  .photo-row-3 .photo-placeholder { height: 220px; }
-  .photo-grid-alt {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 16px;
-    margin-bottom: 16px;
-  }
-  .photo-wide { min-height: 300px; font-size: 0.9rem; }
-  .photo-grid-alt .photo-col { gap: 16px; }
-  .photo-sm { flex: 1; min-height: 130px; }
-  .photo-row-4 {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    margin-bottom: 28px;
-  }
-  .photo-sq { height: 180px; }
-  .photo-note { text-align: center; color: var(--text-muted); font-size: 0.9rem; font-style: italic; }
+  .marquee-item:hover { background: #cddbe8; }
 
   /* ── Venue ── */
   .venue-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
@@ -804,7 +818,7 @@ const camSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" v
   .map-link-ext:hover { color: var(--blue-mid); text-decoration: underline; }
 
   /* ── Organizers ── */
-  .org-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .org-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 28px; }
   .org-card {
     background: #fff;
     border: 1px solid var(--border);
@@ -812,6 +826,11 @@ const camSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" v
     padding: 32px 28px;
     text-align: center;
     box-shadow: var(--shadow);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .org-card:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: var(--shadow-lg);
   }
   .org-logo-wrap {
     height: 72px;
@@ -881,18 +900,64 @@ const camSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" v
   .footer-links a:hover { color: #fff; }
   .footer-copy { color: rgba(255,255,255,0.3); font-size: 0.8rem; width: 100%; }
 
+  /* ── Hamburger ── */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    border-radius: 8px;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.25);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .nav-hamburger span {
+    display: block;
+    height: 2px;
+    background: #fff;
+    border-radius: 2px;
+    transition: transform 0.25s, opacity 0.25s;
+    transform-origin: center;
+  }
+  .nav-hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .nav-hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
   /* ── Responsive ── */
   @media (max-width: 768px) {
-    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 64px;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      gap: 0;
+      background: rgba(0, 25, 90, 0.98);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 8px 16px 16px;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links li { width: 100%; }
+    .nav-links a {
+      display: block;
+      padding: 12px 8px;
+      border-radius: 8px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      font-size: 1rem;
+    }
+    .nav-links li:last-child a { border-bottom: none; }
+    .nav-cta { margin-top: 8px; text-align: center; }
     .about-grid { grid-template-columns: 1fr; gap: 40px; }
     .about-stats { grid-template-columns: 1fr 1fr; }
-    .speakers-grid { grid-template-columns: 1fr; }
-    .photo-grid { grid-template-columns: 1fr 1fr; }
-    .photo-tall { min-height: 240px; }
-    .photo-row-3 { grid-template-columns: 1fr 1fr; }
-    .photo-row-3 .photo-placeholder:last-child { grid-column: span 2; }
-    .photo-grid-alt { grid-template-columns: 1fr; }
-    .photo-row-4 { grid-template-columns: 1fr 1fr; }
+    .speaker-right { padding: 28px 24px; }
+    .marquee-item { height: 160px; }
     .venue-grid { grid-template-columns: 1fr; }
     .org-grid { grid-template-columns: 1fr; }
     .schedule-item { grid-template-columns: 1fr; gap: 4px; }
