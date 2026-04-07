@@ -3,6 +3,7 @@ export type Lang = "zh" | "en";
 const apnicEventUrl =
   "https://academy.apnic.net/en/events?id=a0BOc000003Mh1NMAS";
 const twnogEventUrl = "https://2026.twnog.net/";
+const kktixUrl = "https://twnog.kktix.cc";
 
 export const translations = {
   zh: {
@@ -13,9 +14,10 @@ export const translations = {
 
     nav: {
       about: "關於",
-      schedule: "資訊",
-      speakers: "亮點",
+      course: "課程",
+      schedule: "議程",
       venue: "場地",
+      official: "TWNOG 7",
       register: "前往報名",
     },
 
@@ -26,10 +28,10 @@ export const translations = {
       titleAccent: "2026",
       subtitle:
         "與 APNIC Academy 連結的網路維運社群活動——\n聚焦網路工程、營運經驗、互聯交流與技術實務。",
-      metaDate: "2026 年 5 月 15 日（週五）09:00–17:30 UTC+8",
+      metaDate: "2026 年 5 月 13–15 日 09:30–17:30 UTC+8",
       metaVenue: "臺大醫院國際會議中心四樓",
       registerBtn: "前往 APNIC Academy",
-      scheduleBtn: "查看活動資訊",
+      scheduleBtn: "查看活動議程",
     },
 
     about: {
@@ -38,111 +40,188 @@ export const translations = {
       p1: "<strong>TWNOG 7</strong> 是台灣網路維運社群的年度論壇，並與 APNIC Academy 活動頁連結，歡迎網路維運者、工程師、研究人員、學生與相關專業人士參與。",
       p2: "TWNOG 是網路營運商、研究者與相關同好交流網路維運技術的平台，目標是凝聚社群、累積維運能量，並與國際其他 NOG 建立合作關係。",
       p3: "本頁整理 APNIC Academy 指定活動頁、APNIC Fellowship 公開資訊、TWNOG 7 官方站與 KKTIX 活動頁；精確議程、講者與報名狀態請以官方連結公布內容為準。",
-      tags: ["Network Operations", "Peering", "BGP", "IPv6", "Security", "Community"],
-    },
-
-    schedule: {
-      label: "活動資訊",
-      title: "日期、報名與重點",
-      days: [
-        {
-          badge: "時間",
-          heading: "2026 年 5 月 15 日（週五）",
-          items: [
-            {
-              time: "09:00 – 17:30",
-              title: "TWNOG 7 論壇",
-              desc: "活動於臺大醫院國際會議中心四樓舉辦，KKTIX 公開資訊列示時間為 09:00 至 17:30（UTC+8）。",
-            },
-            {
-              time: "全天",
-              title: "網路維運技術交流",
-              desc: "主題涵蓋網路工程、網路安全、BGP、IPv6、資料中心、雲端網路與 ISP 維運等方向。",
-            },
-          ],
-        },
-        {
-          badge: "報名",
-          heading: "APNIC Academy、Fellowship 與 TWNOG 連結",
-          items: [
-            {
-              time: "APNIC",
-              title: "APNIC Academy 活動頁",
-              desc: "請透過本頁主要按鈕前往 APNIC Academy 活動頁查看最新報名與活動資訊。",
-            },
-            {
-              time: "Fellowship",
-              title: "APNIC Fellowship 申請",
-              desc: "APNIC Fellowship 頁面列示 TWNOG 7 申請期間為 2026 年 4 月 1 日 00:00 至 4 月 24 日 23:59（UTC+8）。",
-            },
-            {
-              time: "TWNOG",
-              title: "TWNOG 7 官方網站、議程與 KKTIX",
-              desc: "官方網站提供活動頁、議程、投稿、交通與贊助資訊；KKTIX 頁面提供票種、報名人數與報名狀態。",
-            },
-          ],
-        },
-        {
-          badge: "票務",
-          heading: "公開票務資訊",
-          items: [
-            {
-              time: "2026/03/17 – 2026/04/01",
-              title: "早鳥票",
-              desc: "KKTIX 公開資訊列示早鳥票 TWD 100，販售期間為 2026 年 3 月 17 日 00:00 至 4 月 1 日 00:00（UTC+8）。",
-            },
-            {
-              time: "2026/04/01 – 2026/05/14",
-              title: "一般票與學生票",
-              desc: "KKTIX 公開資訊列示一般票 TWD 300、學生票 TWD 100，販售至 2026 年 5 月 14 日 00:00（UTC+8）。",
-            },
-            {
-              time: "活動當日",
-              title: "午餐與現場交流",
-              desc: "KKTIX 活動資訊標示本活動將提供午餐，並規劃交流與媒合相關安排。",
-            },
-          ],
-        },
+      tags: [
+        "Network Operations",
+        "Peering",
+        "BGP",
+        "IPv6",
+        "Security",
+        "Community",
       ],
     },
 
-    speakers: {
-      label: "講師與亮點",
-      title: "講師資訊與活動特色",
-      people: [
+    course: {
+      label: "課程內容",
+      title: "IPv6 工作坊課程介紹",
+      description:
+        "本技術工作坊由 TWNOG 與 APNIC 合作舉辦，旨在為網路工程師與維運人員提供 IPv6 協議實務操作經驗。課程結合理論授課與實體模擬環境的實驗練習，專注於現代服務供應商與企業網路中的 IPv6 配置、規劃、安全與過渡技術。",
+      objectives: {
+        title: "學習目標",
+        items: [
+          "IPv6 基礎知識：了解 IPv6 協議、位址表示法與類型。",
+          "位址配置：掌握 Static, SLAAC 與 DHCPv6 等位址配置技術。",
+          "網路規劃：學習 IPv6 子網切分、匯總與位址規劃策略。",
+          "核心協議：深入理解 ICMPv6, NDP 與 PMTUD 運作原理。",
+          "安全與過渡：部署 IPv6 安全防護措施並實作 IPv6 過渡技術。",
+          "部署實務：進行 IPv6 路由配置與整體部署規劃。",
+        ],
+      },
+      outline: {
+        title: "課程大綱",
+        items: [
+          "IPv6 簡介：協議基礎、位址表示法與位址類型。",
+          "IPv6 核心機制：ICMPv6, NDP 與 PMTUD 運作。",
+          "位址配置與規劃：SLAAC, DHCPv6 實作與位址規劃。",
+          "IPv6 安全與路由：安全威脅防護與 IPv6 路由技術。",
+          "過渡與部署：IPv6 過渡技術實務與部署規劃。",
+        ],
+      },
+      audience: {
+        title: "目標對象與先修條件",
+        items: [
+          "目標對象：來自 ISP、IXP 或資料中心的網路工程師、系統管理員及技術人員。",
+          "先修條件：紮實的網路基礎與 IPv4 運作知識。",
+          "先修條件：熟悉基礎路由概念與網路安全意識。",
+          "先修條件：具備路由器命令列介面 (Cisco IOS, Juniper Junos 等) 操作經驗。",
+        ],
+      },
+    },
+
+    schedule: {
+      label: "Time Schedule",
+      title: "活動議程",
+      days: [
         {
-          name: "講師與議程",
-          role: "Speaker & Agenda Status",
-          org: "TWNOG 7",
-          avatar: "1",
-          details: [
-            "TWNOG 7 活動頁表示歷屆 TWNOG 皆邀請講者分享網路相關最新趨勢與技術，本屆也將公布 session 內容。",
-            "主題方向包含 BGP、IPv6、網路安全、資料中心、雲端網路與 ISP 相關議題。",
-            "目前可讀取的公開頁面尚未列出完整講者姓名與個人簡介；精確議程與講者名單請以 TWNOG 7 session/agenda 頁面與 APNIC Academy 活動頁公布為準。",
+          date: "2026/05/13",
+          dayName: "Day 1",
+          items: [
+            {
+              time: "09:00 - 10:30",
+              title: "IPv6 Protocol ",
+              speaker: "",
+              speakerTitle: "",
+            },
+            {
+              time: "10:30 - 11:00",
+              title: "Break",
+              speaker: "",
+              speakerTitle: "",
+            },
+            {
+              time: "11:00 - 12:30",
+              title: "IPv6 Address Representation and Types",
+              speaker: "",
+              speakerTitle: "",
+            },
+            {
+              time: "12:30 - 13:30",
+              title: "Lunch Break",
+              speaker: "",
+              speakerTitle: "",
+            },
+            {
+              time: "13:30 - 15:00",
+              title: "ICMPv6, NDP, and PMTUD",
+              speaker: "",
+              speakerTitle: "",
+            },
+            {
+              time: "15:00 - 15:30",
+              title: "Break",
+              speaker: "",
+              speakerTitle: "",
+            },
+            {
+              time: "15:30 - 17:00",
+              title: "IPv6 Address Configuration with Static and SLAAC",
+              speaker: "",
+              speakerTitle: "",
+            },
           ],
-          highlights: [
-            { value: "Session", label: "議程頁面" },
-            { value: "Tech", label: "技術趨勢" },
-            { value: "Ops", label: "維運經驗" },
-          ],
-          tags: ["BGP", "IPv6", "Security", "Operations"],
         },
         {
-          name: "互聯交流",
-          role: "Peering & Community",
-          org: "TWNOG 7",
-          avatar: "2",
-          details: [
-            "本屆安排與會者介紹自家網路，包含 AS、流量型態與聯絡窗口等資訊，促進彼此認識。",
-            "活動也規劃媒合平台與全天候會議室，方便與會者安排面對面交流與合作洽談。",
-            "國內外網路服務、設備與解決方案廠商將參與展示，提供更多現場交流機會。",
+          date: "2026/05/14",
+          dayName: "Day 2",
+          items: [
+            {
+              time: "09:00 - 10:30",
+              title: "IPv6 Address Configuration with DHCPv6 ",
+              speaker: "",
+              speakerTitle: "",
+            },
+            {
+              time: "10:30 - 11:00",
+              title: "Break",
+              speaker: "",
+              speakerTitle: "",
+            },
+            {
+              time: "11:00 - 12:30",
+              title: "IPv6 Subnetting and Summarization",
+              speaker: "",
+              speakerTitle: "",
+            },
+            {
+              time: "12:30 - 13:30",
+              title: "Lunch Break",
+              speaker: "",
+              speakerTitle: "",
+            },
+            {
+              time: "13:30 - 15:00",
+              title: "IPv6 Address Planning",
+              speaker: "",
+              speakerTitle: "",
+            },
           ],
-          highlights: [
-            { value: "AS", label: "網路介紹" },
-            { value: "Meet", label: "交流媒合" },
-            { value: "Expo", label: "廠商攤位" },
+        },
+        {
+          date: "2026/05/15",
+          dayName: "Day 3",
+          items: [
+            {
+              time: "09:00 - 10:30",
+              title: "IPv6 Routing",
+              speaker: "Makito Lay (趙明輝)",
+              speakerTitle: "",
+            },
+            {
+              time: "10:30 - 11:00",
+              title: "Break",
+              speaker: "",
+              speakerTitle: "",
+            },
+            {
+              time: "11:00 - 12:30",
+              title: "IPv6 Security",
+              speaker: "Yong-Tin Chen (陳勇廷)",
+              speakerTitle: "",
+            },
+            {
+              time: "12:30 - 13:30",
+              title: "Lunch Break",
+              speaker: "",
+              speakerTitle: "",
+            },
+            {
+              time: "13:30 - 15:00",
+              title: "IPv6 Transition Techniques",
+              speaker: "Yong-Tin Chen (陳勇廷)",
+              speakerTitle: "",
+            },
+            {
+              time: "15:00 - 15:30",
+              title: "Break",
+              speaker: "",
+              speakerTitle: "",
+            },
+            {
+              time: "15:30 - 17:00",
+              title: "IPv6 Deployment Planning",
+              speaker: " Makito Lay (趙明輝)",
+              speakerTitle: "",
+            },
           ],
-          tags: ["Peering", "AS", "Community", "Exhibitors"],
         },
       ],
     },
@@ -192,10 +271,12 @@ export const translations = {
       title: "查看最新活動資訊",
       desc: "前往 APNIC Academy 指定活動頁確認最新內容；TWNOG 官方網站與 KKTIX 提供論壇、票務與交通資訊。",
       btn: "前往 APNIC Academy",
-      btnAlt: "TWNOG 7 官方網站",
+      btnAlt: "KKTIX 報名頁面",
+      officialHref: twnogEventUrl,
       note: "2026/05/15 · 臺北 · APNIC Fellowship 申請至 2026/04/24 23:59 UTC+8",
       primaryHref: apnicEventUrl,
-      secondaryHref: twnogEventUrl,
+      secondaryHref: kktixUrl,
+      kktixHref: kktixUrl,
     },
 
     footer: {
@@ -211,9 +292,10 @@ export const translations = {
 
     nav: {
       about: "About",
-      schedule: "Info",
-      speakers: "Highlights",
+      course: "Course",
+      schedule: "Schedule",
       venue: "Venue",
+      official: "TWNOG 7",
       register: "Register",
     },
 
@@ -224,10 +306,10 @@ export const translations = {
       titleAccent: "2026",
       subtitle:
         "A network operations community event linked through APNIC Academy —\nfocused on engineering practice, operations experience, peering, and technical exchange.",
-      metaDate: "15 May 2026, Friday, 09:00–17:30 UTC+8",
+      metaDate: "13–15 May 2026, 09:30–17:30 UTC+8",
       metaVenue: "NTUH International Convention Center, 4F",
       registerBtn: "Open APNIC Academy",
-      scheduleBtn: "View Event Info",
+      scheduleBtn: "View Schedule",
     },
 
     about: {
@@ -236,111 +318,188 @@ export const translations = {
       p1: "<strong>TWNOG 7</strong> is the annual forum of the Taiwan Network Operators' Group and is linked through the APNIC Academy event page. Network operators, engineers, researchers, students, and related professionals are welcome to join.",
       p2: "TWNOG is a platform for network operators, researchers, and related practitioners to exchange Internet operations technologies, build local operational capability, and connect with other NOG communities.",
       p3: "This page summarizes the specified APNIC Academy event link, APNIC Fellowship public information, the TWNOG 7 official site, and the KKTIX event page. Please use the official links for the latest agenda, speakers, registration, and ticket status.",
-      tags: ["Network Operations", "Peering", "BGP", "IPv6", "Security", "Community"],
-    },
-
-    schedule: {
-      label: "Event Info",
-      title: "Date, Registration, and Key Details",
-      days: [
-        {
-          badge: "Time",
-          heading: "Friday, 15 May 2026",
-          items: [
-            {
-              time: "09:00 – 17:30",
-              title: "TWNOG 7 Forum",
-              desc: "The event is held on the fourth floor of NTUH International Convention Center. Public KKTIX information lists the time as 09:00 to 17:30 UTC+8.",
-            },
-            {
-              time: "All day",
-              title: "Network Operations Exchange",
-              desc: "Topics include network engineering, security, BGP, IPv6, data centers, cloud networking, and ISP operations.",
-            },
-          ],
-        },
-        {
-          badge: "Register",
-          heading: "APNIC Academy, Fellowship, and TWNOG Links",
-          items: [
-            {
-              time: "APNIC",
-              title: "APNIC Academy Event Page",
-              desc: "Use the primary button on this page to open the APNIC Academy event page for the latest registration and event information.",
-            },
-            {
-              time: "Fellowship",
-              title: "APNIC Fellowship Application",
-              desc: "The APNIC Fellowship page lists the TWNOG 7 application window as 1 April 2026, 00:00 to 24 April 2026, 23:59 UTC+8.",
-            },
-            {
-              time: "TWNOG",
-              title: "TWNOG 7 Website, Agenda, and KKTIX",
-              desc: "The official website provides event, agenda, call-for-papers, transport, and sponsorship details; KKTIX provides ticket types, attendee count, and registration status.",
-            },
-          ],
-        },
-        {
-          badge: "Tickets",
-          heading: "Public Ticket Information",
-          items: [
-            {
-              time: "17 Mar – 1 Apr 2026",
-              title: "Early Bird Ticket",
-              desc: "KKTIX public information lists early bird tickets at TWD 100, available from 17 March 2026, 00:00 to 1 April 2026, 00:00 UTC+8.",
-            },
-            {
-              time: "1 Apr – 14 May 2026",
-              title: "General and Student Tickets",
-              desc: "KKTIX public information lists general tickets at TWD 300 and student tickets at TWD 100, available until 14 May 2026, 00:00 UTC+8.",
-            },
-            {
-              time: "Event day",
-              title: "Lunch and Networking",
-              desc: "The KKTIX event page notes that lunch will be provided and describes networking and matchmaking arrangements.",
-            },
-          ],
-        },
+      tags: [
+        "Network Operations",
+        "Peering",
+        "BGP",
+        "IPv6",
+        "Security",
+        "Community",
       ],
     },
 
-    speakers: {
-      label: "Speakers & Highlights",
-      title: "Speaker Information and Event Highlights",
-      people: [
+    course: {
+      label: "Course Content",
+      title: "IPv6 Workshop Course Information",
+      description:
+        "This technical workshop, delivered in partnership between TWNOG and APNIC, is designed for network engineers and operators to gain hands-on experience with IPv6 protocol. The course combines theoretical lectures with practical lab exercises in simulated environments, focusing on configuration, planning, security, and transition techniques of IPv6 in modern networks.",
+      objectives: {
+        title: "Learning Objectives",
+        items: [
+          "IPv6 Fundamentals: Understand IPv6 protocol, address representation, and types.",
+          "Address Configuration: Master techniques like Static, SLAAC, and DHCPv6.",
+          "Network Planning: Learn IPv6 subnetting, summarization, and address planning strategies.",
+          "Core Protocols: Deep dive into ICMPv6, NDP, and PMTUD operations.",
+          "Security & Transition: Deploy IPv6 security measures and implement transition techniques.",
+          "Deployment Practice: Configure IPv6 routing and overall deployment planning.",
+        ],
+      },
+      outline: {
+        title: "Course Outline",
+        items: [
+          "Introduction to IPv6: Protocol basics, address representation, and types.",
+          "IPv6 Core Mechanisms: ICMPv6, NDP, and PMTUD operations.",
+          "Address Config & Planning: SLAAC, DHCPv6 implementation, and address planning.",
+          "IPv6 Security & Routing: Threat protection and IPv6 routing technologies.",
+          "Transition & Deployment: IPv6 transition techniques and deployment planning.",
+        ],
+      },
+      audience: {
+        title: "Target Audience & Prerequisites",
+        items: [
+          "Target Audience: Network engineers, system admins, and technical staff from ISPs, IXPs, and data centers.",
+          "Prerequisites: Solid networking fundamentals and IPv4 operation knowledge.",
+          "Prerequisites: Familiarity with basic routing concepts and network security awareness.",
+          "Prerequisites: Experience with router command-line interfaces (Cisco IOS, Juniper Junos, etc.).",
+        ],
+      },
+    },
+
+    schedule: {
+      label: "Time Schedule",
+      title: "Event Schedule",
+      days: [
         {
-          name: "Speakers and Agenda",
-          role: "Speaker & Agenda Status",
-          org: "TWNOG 7",
-          avatar: "1",
-          details: [
-            "The TWNOG 7 event page says the forum will continue inviting speakers to share current trends and technologies in the networking world, with session details to be published on the session page.",
-            "Topic areas include BGP, IPv6, network security, data centers, cloud networking, and ISP operations.",
-            "The readable public pages do not yet list the full speaker names and biographies. Please refer to the TWNOG 7 session/agenda page and APNIC Academy event page for the final agenda and speaker list.",
+          date: "2026/05/13",
+          dayName: "Day 1",
+          items: [
+            {
+              time: "09:00 - 10:30",
+              title: "IPv6 Protocol",
+              speaker: "",
+              speakerTitle: "",
+            },
+            {
+              time: "10:30 - 11:00",
+              title: "Break",
+              speaker: "",
+              speakerTitle: "",
+            },
+            {
+              time: "11:00 - 12:30",
+              title: "IPv6 Address Representation and Types",
+              speaker: "",
+              speakerTitle: "",
+            },
+            {
+              time: "12:30 - 13:30",
+              title: "Lunch Break",
+              speaker: "",
+              speakerTitle: "",
+            },
+            {
+              time: "13:30 - 15:00",
+              title: "ICMPv6, NDP, and PMTUD",
+              speaker: "",
+              speakerTitle: "",
+            },
+            {
+              time: "15:00 - 15:30",
+              title: "Break",
+              speaker: "",
+              speakerTitle: "",
+            },
+            {
+              time: "15:30 - 17:00",
+              title: "IPv6 Address Configuration with Static and SLAAC",
+              speaker: "",
+              speakerTitle: "",
+            },
           ],
-          highlights: [
-            { value: "Session", label: "Agenda Page" },
-            { value: "Tech", label: "Trends" },
-            { value: "Ops", label: "Experience" },
-          ],
-          tags: ["BGP", "IPv6", "Security", "Operations"],
         },
         {
-          name: "Peering Exchange",
-          role: "Peering & Community",
-          org: "TWNOG 7",
-          avatar: "2",
-          details: [
-            "This edition includes time for attendees to introduce their networks, including AS information, traffic patterns, and contact points.",
-            "The event also plans a matchmaking platform and an all-day meeting room for face-to-face exchange and business discussions.",
-            "A record number of local and international exhibitors are expected to join, creating more opportunities to meet networking service, equipment, and solution providers.",
+          date: "2026/05/14",
+          dayName: "Day 2",
+          items: [
+            {
+              time: "09:00 - 10:30",
+              title: "IPv6 Address Configuration with DHCPv6",
+              speaker: "",
+              speakerTitle: "",
+            },
+            {
+              time: "10:30 - 11:00",
+              title: "Break",
+              speaker: "",
+              speakerTitle: "",
+            },
+            {
+              time: "11:00 - 12:30",
+              title: "IPv6 Subnetting and Summarization",
+              speaker: "",
+              speakerTitle: "",
+            },
+            {
+              time: "12:30 - 13:30",
+              title: "Lunch Break",
+              speaker: "",
+              speakerTitle: "",
+            },
+            {
+              time: "13:30 - 15:00",
+              title: "IPv6 Address Planning",
+              speaker: "",
+              speakerTitle: "",
+            },
           ],
-          highlights: [
-            { value: "AS", label: "Network Intros" },
-            { value: "Meet", label: "Matchmaking" },
-            { value: "Expo", label: "Exhibitors" },
+        },
+        {
+          date: "2026/05/15",
+          dayName: "Day 3",
+          items: [
+            {
+              time: "09:00 - 10:30",
+              title: "IPv6 Routing",
+              speaker: "Makito Lay (趙明輝)",
+              speakerTitle: "",
+            },
+            {
+              time: "10:30 - 11:00",
+              title: "Break",
+              speaker: "",
+              speakerTitle: "",
+            },
+            {
+              time: "11:00 - 12:30",
+              title: "IPv6 Security",
+              speaker: "Yong-Tin Chen (陳勇廷)",
+              speakerTitle: "",
+            },
+            {
+              time: "12:30 - 13:30",
+              title: "Lunch Break",
+              speaker: "",
+              speakerTitle: "",
+            },
+            {
+              time: "13:30 - 15:00",
+              title: "IPv6 Transition Techniques",
+              speaker: "Yong-Tin Chen (陳勇廷)",
+              speakerTitle: "",
+            },
+            {
+              time: "15:00 - 15:30",
+              title: "Break",
+              speaker: "",
+              speakerTitle: "",
+            },
+            {
+              time: "15:30 - 17:00",
+              title: "IPv6 Deployment Planning",
+              speaker: "Makito Lay (趙明輝)",
+              speakerTitle: "",
+            },
           ],
-          tags: ["Peering", "AS", "Community", "Exhibitors"],
         },
       ],
     },
@@ -349,9 +508,12 @@ export const translations = {
       label: "Location",
       title: "Venue & Transport",
       name: "NTUH International Convention Center, 4F",
-      address: "No. 2, Xuzhou Road, Zhongzheng District, Taipei City 100, Taiwan",
-      transport1: "Located on Xuzhou Road in Zhongzheng District, Taipei, near the NTU Hospital and Shandao Temple area",
-      transport2: "Please refer to the TWNOG 7 official transport page and on-site notices for detailed directions",
+      address:
+        "No. 2, Xuzhou Road, Zhongzheng District, Taipei City 100, Taiwan",
+      transport1:
+        "Located on Xuzhou Road in Zhongzheng District, Taipei, near the NTU Hospital and Shandao Temple area",
+      transport2:
+        "Please refer to the TWNOG 7 official transport page and on-site notices for detailed directions",
       mapLink: "Open in Google Maps →",
     },
 
@@ -390,10 +552,12 @@ export const translations = {
       title: "Check the Latest Event Information",
       desc: "Open the specified APNIC Academy event page for the latest details. The TWNOG website and KKTIX page provide forum, ticketing, and transport information.",
       btn: "Open APNIC Academy",
-      btnAlt: "TWNOG 7 Website",
+      btnAlt: "KKTIX Registration",
+      officialHref: twnogEventUrl,
       note: "15 May 2026 · Taipei · APNIC Fellowship applications close 24 April 2026, 23:59 UTC+8",
       primaryHref: apnicEventUrl,
-      secondaryHref: twnogEventUrl,
+      secondaryHref: kktixUrl,
+      kktixHref: kktixUrl,
     },
 
     footer: {

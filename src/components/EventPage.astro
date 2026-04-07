@@ -49,8 +49,7 @@ const strip2Imgs = getRandomImgs(strip2.length * 2);
       </div>
       <ul class="nav-links" id="nav-links">
         <li><a href="#about">{t.nav.about}</a></li>
-        <li><a href="#schedule">{t.nav.schedule}</a></li>
-        <li><a href="#speakers">{t.nav.speakers}</a></li>
+        <li><a href="#course">{t.nav.course}</a></li>
         <li><a href="#venue">{t.nav.venue}</a></li>
         <li>
           <a href={otherLangHref} class="lang-toggle" aria-label={`Switch to ${otherLang}`}>
@@ -58,7 +57,11 @@ const strip2Imgs = getRandomImgs(strip2.length * 2);
             {otherLangLabel}
           </a>
         </li>
-        <li><a href="#register" class="nav-cta">{t.nav.register}</a></li>
+        <li>
+          <a href={t.register.kktixHref} class="nav-cta" target="_blank" rel="noopener">
+            {t.nav.register}
+          </a>
+        </li>
       </ul>
       <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle menu" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -93,8 +96,9 @@ const strip2Imgs = getRandomImgs(strip2.length * 2);
         </div>
       </div>
       <div class="hero-actions">
-        <a href="#register" class="btn btn-primary">{t.hero.registerBtn}</a>
-        <a href="#schedule" class="btn btn-ghost">{t.hero.scheduleBtn}</a>
+        <a href={t.register.kktixHref} target="_blank" rel="noopener" class="btn btn-primary">{t.hero.registerBtn}</a>
+        <a href="#schedule" class="btn btn-ghost-light">{t.hero.scheduleBtn}</a>
+        <a href={t.register.officialHref} target="_blank" rel="noopener" class="btn btn-ghost-light">{t.nav.official}</a>
       </div>
     </div>
     <div class="hero-wave">
@@ -145,6 +149,46 @@ const strip2Imgs = getRandomImgs(strip2.length * 2);
     </div>
   </div>
 
+  <!-- Course Content -->
+  <section class="section" id="course">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">{t.course.label}</span>
+        <h2 class="section-title">{t.course.title}</h2>
+        <p class="section-desc">{t.course.description}</p>
+      </div>
+      <div class="course-grid">
+        <div class="course-card">
+          <div class="course-card-header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            <h3>{t.course.objectives.title}</h3>
+          </div>
+          <ul class="course-list">
+            {t.course.objectives.items.map(item => <li>{item}</li>)}
+          </ul>
+        </div>
+        <div class="course-card">
+          <div class="course-card-header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+            <h3>{t.course.outline.title}</h3>
+          </div>
+          <ul class="course-list">
+            {t.course.outline.items.map(item => <li>{item}</li>)}
+          </ul>
+        </div>
+        <div class="course-card">
+          <div class="course-card-header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <h3>{t.course.audience.title}</h3>
+          </div>
+          <ul class="course-list">
+            {t.course.audience.items.map(item => <li>{item}</li>)}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Schedule -->
   <section class="section section-alt" id="schedule">
     <div class="container">
@@ -152,62 +196,39 @@ const strip2Imgs = getRandomImgs(strip2.length * 2);
         <span class="section-label">{t.schedule.label}</span>
         <h2 class="section-title">{t.schedule.title}</h2>
       </div>
-      <div class="schedule-tabs">
-        {t.schedule.days.map((day) => (
-          <div class="schedule-day">
-            <div class="day-header">
-              <span class="day-badge">{day.badge}</span>
-              <h3>{day.heading}</h3>
-            </div>
-            <div class="schedule-items">
+      
+      <div class="schedule-tabs-nav">
+        {t.schedule.days.map((day, idx) => (
+          <button 
+            class={`tab-btn ${idx === 0 ? 'active' : ''}`} 
+            data-day={idx}
+          >
+            <span class="tab-day">{day.dayName}</span>
+            <span class="tab-date">{day.date.split('/')[1]}/{day.date.split('/')[2]}</span>
+          </button>
+        ))}
+      </div>
+
+      <div class="schedule-content-wrap">
+        {t.schedule.days.map((day, idx) => (
+          <div 
+            class={`schedule-day-pane ${idx === 0 ? 'active' : ''}`} 
+            id={`day-pane-${idx}`}
+          >
+            <div class="schedule-items-list">
               {day.items.map((item) => (
-                <div class="schedule-item">
-                  <span class="time">{item.time}</span>
-                  <div class="schedule-content">
-                    <strong>{item.title}</strong>
-                    <p>{item.desc}</p>
+                <div class="schedule-entry">
+                  <div class="entry-time">{item.time}</div>
+                  <div class="entry-detail">
+                    <div class="entry-title">{item.title}</div>
+                    {item.speaker && (
+                      <div class="entry-speaker">
+                        {item.speaker} <span class="speaker-role">· {item.speakerTitle}</span>
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Speakers -->
-  <section class="section" id="speakers">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-label">{t.speakers.label}</span>
-        <h2 class="section-title">{t.speakers.title}</h2>
-      </div>
-      <div class="speakers-list">
-        {t.speakers.people.map((person) => (
-          <div class="speaker-card">
-            <div class="speaker-right">
-              <div class="speaker-id">
-                <div class="speaker-name-row">
-                  <h3 class="speaker-name">{person.name}</h3>
-                  <span class="speaker-org">{person.org}</span>
-                </div>
-                <p class="speaker-role">{person.role}</p>
-              </div>
-              <div class="speaker-highlights">
-                {person.highlights.map((h) => (
-                  <div class="speaker-highlight">
-                    <span class="highlight-value">{h.value}</span>
-                    <span class="highlight-label">{h.label}</span>
-                  </div>
-                ))}
-              </div>
-              <div class="speaker-bio">
-                {person.details.map((para) => <p>{para}</p>)}
-              </div>
-              <div class="speaker-tags">
-                {person.tags.map((tag) => <span class="tag tag-sm">{tag}</span>)}
-              </div>
             </div>
           </div>
         ))}
@@ -303,7 +324,10 @@ const strip2Imgs = getRandomImgs(strip2.length * 2);
         <a href={t.register.primaryHref} target="_blank" rel="noopener" class="btn btn-primary btn-lg">
           {t.register.btn}
         </a>
-        <a href={t.register.secondaryHref} target="_blank" rel="noopener" class="btn btn-ghost-light btn-lg">
+        <a href={t.register.officialHref} target="_blank" rel="noopener" class="btn btn-ghost-light btn-lg">
+          {t.nav.official}
+        </a>
+        <a href={t.register.kktixHref} target="_blank" rel="noopener" class="btn btn-ghost-light btn-lg">
           {t.register.btnAlt}
         </a>
       </div>
@@ -322,8 +346,8 @@ const strip2Imgs = getRandomImgs(strip2.length * 2);
       </div>
       <div class="footer-links">
         <a href="https://academy.apnic.net/en/events?id=a0BOc000003Mh1NMAS" target="_blank" rel="noopener">APNIC Academy</a>
-        <a href="https://2026.twnog.net" target="_blank" rel="noopener">TWNOG 7</a>
-        <a href="https://twnog.kktix.cc" target="_blank" rel="noopener">KKTIX</a>
+        <a href={t.register.officialHref} target="_blank" rel="noopener">{t.nav.official}</a>
+        <a href={t.register.kktixHref} target="_blank" rel="noopener">KKTIX</a>
         <a href={otherLangHref}>{otherLangLabel}</a>
       </div>
       <p class="footer-copy">{t.footer.copy}</p>
@@ -348,6 +372,24 @@ const strip2Imgs = getRandomImgs(strip2.length * 2);
       })
     );
   }
+
+  // Schedule Tabs
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const panes = document.querySelectorAll('.schedule-day-pane');
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const dayIdx = btn.getAttribute('data-day');
+      
+      // Update buttons
+      tabBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      // Update panes
+      panes.forEach(p => p.classList.remove('active'));
+      const activePane = document.getElementById(`day-pane-${dayIdx}`);
+      if (activePane) activePane.classList.add('active');
+    });
+  });
 </script>
 
 <style>
@@ -396,27 +438,38 @@ const strip2Imgs = getRandomImgs(strip2.length * 2);
     padding: 0.375rem 0.875rem;
     border-radius: 0.5rem;
     color: rgba(255,255,255,0.8);
-    font-size: 0.875rem;
-    font-weight: 500;
+    font-size: 0.8rem;
+    font-weight: 600;
     transition: color 0.2s, background 0.2s;
+    border: 0.0625rem solid transparent;
   }
   .nav-links a:hover { color: #fff; background: rgba(255,255,255,0.1); }
-  .lang-toggle {
+  .lang-toggle, .nav-cta {
     display: flex !important;
     align-items: center;
+    justify-content: center;
     gap: 0.3125rem;
-    border: 0.0625rem solid rgba(255,255,255,0.25) !important;
-    font-size: 0.8rem !important;
-    font-weight: 600 !important;
+    min-width: 6.5rem;
+    border: 0.0625rem solid transparent !important;
     letter-spacing: 0.04em;
   }
-  .lang-toggle:hover { border-color: rgba(255,255,255,0.6) !important; }
+  .lang-toggle {
+    border-color: rgba(255,255,255,0.25) !important;
+    background: rgba(255,255,255,0.05) !important;
+  }
+  .lang-toggle:hover { 
+    border-color: rgba(255,255,255,0.6) !important; 
+    background: rgba(255,255,255,0.15) !important;
+  }
   .nav-cta {
     background: var(--blue-light) !important;
+    border-color: var(--blue-light) !important;
     color: #fff !important;
-    font-weight: 600 !important;
   }
-  .nav-cta:hover { background: #00b3f0 !important; }
+  .nav-cta:hover { 
+    background: #00b3f0 !important; 
+    border-color: #00b3f0 !important; 
+  }
 
   /* ── Hero ── */
   .hero {
@@ -577,7 +630,98 @@ const strip2Imgs = getRandomImgs(strip2.length * 2);
     letter-spacing: -0.02em;
     line-height: 1.2;
   }
-  .section-desc { margin-top: 0.75rem; color: var(--text-muted); font-size: 1.05rem; }
+  .section-desc { margin-top: 0.75rem; color: var(--text-muted); font-size: 1.05rem; max-width: 50rem; margin-left: auto; margin-right: auto; }
+
+  /* ── Course ── */
+  .course-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); gap: 2rem; margin-top: 3rem; }
+  .course-card {
+    background: #fff;
+    border: 0.0625rem solid var(--border);
+    border-radius: var(--radius);
+    padding: 2.5rem;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .course-card-header { display: flex; align-items: center; gap: 0.75rem; color: var(--blue-mid); }
+  .course-card-header h3 { font-size: 1.1rem; font-weight: 700; color: var(--blue-dark); }
+  .course-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+  .course-list li {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    position: relative;
+    padding-left: 1.25rem;
+  }
+  .course-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--blue-light);
+    font-weight: 800;
+  }
+
+  /* ── Schedule ── */
+  .schedule-tabs-nav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+  .tab-btn {
+    flex: 1;
+    max-width: 12rem;
+    padding: 1rem;
+    background: #fff;
+    border: 0.0625rem solid var(--border);
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .tab-btn:hover { border-color: var(--blue-light); background: var(--blue-pale); }
+  .tab-btn.active {
+    background: var(--blue-dark);
+    border-color: var(--blue-dark);
+    color: #fff;
+    box-shadow: 0 0.5rem 1rem rgba(0, 37, 122, 0.15);
+  }
+  .tab-day { font-size: 1rem; font-weight: 800; }
+  .tab-date { font-size: 0.8rem; opacity: 0.8; font-weight: 500; }
+  .tab-btn.active .tab-date { opacity: 0.9; }
+
+  .schedule-content-wrap {
+    background: #fff;
+    border: 0.0625rem solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .schedule-day-pane { display: none; }
+  .schedule-day-pane.active { display: block; }
+  
+  .schedule-items-list { padding: 0.5rem 0; }
+  .schedule-entry {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.25rem 2rem;
+    border-bottom: 0.0625rem solid var(--border);
+  }
+  .schedule-entry:last-child { border-bottom: none; }
+  .entry-time {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--blue-light);
+    min-width: 4rem;
+    padding-top: 0.125rem;
+  }
+  .entry-title { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 0.25rem; line-height: 1.5; }
+  .entry-speaker { font-size: 0.8rem; color: var(--text-muted); }
+  .speaker-role { font-weight: 400; opacity: 0.8; }
 
   /* ── About ── */
   .about-text p {
@@ -598,113 +742,6 @@ const strip2Imgs = getRandomImgs(strip2.length * 2);
     border: 0.0625rem solid rgba(0,84,166,0.15);
   }
   .tag-sm { padding: 0.1875rem 0.625rem; font-size: 0.75rem; }
-
-  /* ── Schedule ── */
-  .schedule-tabs { display: flex; flex-direction: column; gap: 2rem; }
-  .schedule-day {
-    background: #fff;
-    border: 0.0625rem solid var(--border);
-    border-radius: var(--radius);
-    overflow: hidden;
-    box-shadow: var(--shadow);
-  }
-  .day-header {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1.25rem 1.75rem;
-    background: linear-gradient(90deg, var(--blue-dark), var(--blue-mid));
-  }
-  .day-badge {
-    display: inline-block;
-    padding: 0.25rem 0.75rem;
-    border-radius: 0.375rem;
-    background: rgba(255,255,255,0.2);
-    color: #fff;
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
-  .day-header h3 { color: #fff; font-size: 1.1rem; font-weight: 600; }
-  .schedule-items { padding: 0.5rem 0; }
-  .schedule-item {
-    display: grid;
-    grid-template-columns: 10rem 1fr;
-    gap: 1rem;
-    padding: 1.25rem 1.75rem;
-    border-bottom: 0.0625rem solid var(--border);
-    align-items: start;
-  }
-  .schedule-item:last-child { border-bottom: none; }
-  .time {
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: var(--blue-light);
-    padding-top: 0.125rem;
-    white-space: nowrap;
-    font-variant-numeric: tabular-nums;
-  }
-  .schedule-content strong { display: block; font-size: 0.97rem; color: var(--text); margin-bottom: 0.25rem; }
-  .schedule-content p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; }
-
-  /* ── Speakers ── */
-  .speakers-list { display: flex; flex-direction: column; gap: 2.5rem; }
-  .speaker-card {
-    background: #fff;
-    border: 0.0625rem solid var(--border);
-    border-radius: 1rem;
-    box-shadow: var(--shadow);
-    overflow: hidden;
-    transition: box-shadow 0.2s;
-  }
-  .speaker-card:hover { box-shadow: var(--shadow-lg); }
-
-  /* speaker info */
-  .speaker-right {
-    padding: 2.5rem 2.75rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-  .speaker-id { display: flex; flex-direction: column; gap: 0.375rem; }
-  .speaker-name-row {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-  }
-  .speaker-name { font-size: 1.6rem; font-weight: 800; color: var(--blue-dark); line-height: 1.1; }
-  .speaker-org {
-    display: inline-block;
-    padding: 0.1875rem 0.75rem;
-    background: var(--blue-dark);
-    color: #fff;
-    border-radius: 6.25rem;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-  }
-  .speaker-role { font-size: 0.92rem; color: var(--text-muted); font-weight: 500; }
-
-  .speaker-highlights {
-    display: flex;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-    padding: 1rem 1.25rem;
-    background: var(--bg-alt);
-    border-radius: 0.625rem;
-    border: 0.0625rem solid var(--border);
-  }
-  .speaker-highlight { display: flex; flex-direction: column; gap: 0.125rem; }
-  .highlight-value { font-size: 1.1rem; font-weight: 800; color: var(--blue-mid); }
-  .highlight-label { font-size: 0.78rem; color: var(--text-muted); }
-
-  .speaker-bio { display: flex; flex-direction: column; gap: 0.75rem; }
-  .speaker-bio p { font-size: 0.97rem; color: var(--text-muted); line-height: 1.8; }
-  .speaker-bio p:first-child { font-size: 1.02rem; color: var(--text); font-weight: 500; }
-
-  .speaker-tags { display: flex; flex-wrap: wrap; gap: 0.375rem; }
 
   /* ── Photo Marquee ── */
   .photo-marquee {
@@ -929,11 +966,14 @@ const strip2Imgs = getRandomImgs(strip2.length * 2);
     }
     .nav-links li:last-child a { border-bottom: none; }
     .nav-cta { margin-top: 0.5rem; text-align: center; }
-    .speaker-right { padding: 1.75rem 1.5rem; }
     .marquee-item { height: 10rem; }
     .venue-grid { grid-template-columns: 1fr; }
     .org-grid { grid-template-columns: 1fr; }
-    .schedule-item { grid-template-columns: 1fr; gap: 0.25rem; }
+    .schedule-tabs-nav { gap: 0.5rem; }
+    .tab-btn { padding: 0.75rem 0.5rem; }
+    .tab-day { font-size: 0.9rem; }
+    .schedule-entry { padding: 1rem 1.25rem; gap: 1rem; }
+    .entry-time { min-width: 3.5rem; font-size: 0.8rem; }
     .footer-inner { flex-direction: column; align-items: flex-start; }
   }
 </style>
