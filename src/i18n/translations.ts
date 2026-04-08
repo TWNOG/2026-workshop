@@ -3,13 +3,13 @@ export type Lang = "zh" | "en";
 const apnicEventUrl =
   "https://academy.apnic.net/en/events?id=a0BOc000003Mh1NMAS";
 const twnogEventUrl = "https://2026.twnog.net/";
-const kktixUrl = "https://twnog.kktix.cc";
+const kktixUrl = "https://twnog.kktix.cc/events/twnog7-workshop";
 const fellowshipUrl = "https://fellowship.twnog.net";
 
 export const translations = {
   zh: {
     lang: "zh-Hant",
-    siteTitle: "APNIC Academy × TWNOG 7 | 2026",
+    siteTitle: "TWNOG 7 – IPv6 Workshop",
     siteDescription:
       "APNIC Academy 活動與第七屆台灣網路維運論壇 TWNOG 7，2026 年 5 月 15 日於臺北臺大醫院國際會議中心舉辦",
 
@@ -25,7 +25,7 @@ export const translations = {
     hero: {
       badge1: "APNIC Academy",
       badge2: "TWNOG 7",
-      title: "TWNOG 7",
+      title: "IPv6 Workshop",
       titleAccent: "2026",
       subtitle:
         "與 APNIC Academy 連結的網路維運社群活動——\n聚焦網路工程、營運經驗、互聯交流與技術實務。",
@@ -290,7 +290,7 @@ export const translations = {
 
   en: {
     lang: "en",
-    siteTitle: "APNIC Academy × TWNOG 7 | 2026",
+    siteTitle: "TWNOG 7 – IPv6 Workshop",
     siteDescription:
       "APNIC Academy event information for TWNOG 7, held on 18–20 May 2026 at TWNIC, Taipei",
 
@@ -306,7 +306,7 @@ export const translations = {
     hero: {
       badge1: "APNIC Academy",
       badge2: "TWNOG 7",
-      title: "TWNOG 7",
+      title: "IPv6 Workshop",
       titleAccent: "2026",
       subtitle:
         "A network operations community event linked through APNIC Academy —\nfocused on engineering practice, operations experience, peering, and technical exchange.",
