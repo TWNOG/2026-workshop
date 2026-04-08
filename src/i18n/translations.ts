@@ -29,7 +29,7 @@ export const translations = {
       titleAccent: "2026",
       subtitle:
         "與 APNIC Academy 連結的網路維運社群活動——\n聚焦網路工程、營運經驗、互聯交流與技術實務。",
-      metaDate: "2026 年 5 月 18–20 日 09:30–17:30 UTC+8",
+      metaDate: "2026 年 5 月 18–20 日 09:00–17:00 UTC+8",
       metaVenue: "財團法人台灣網路資訊中心（TWNIC）",
       registerBtn: "前往 APNIC Academy",
       scheduleBtn: "查看活動議程",
