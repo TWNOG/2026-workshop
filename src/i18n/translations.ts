@@ -208,8 +208,8 @@ export const translations = {
             {
               time: "11:00 - 12:30",
               title: "IPv6 Security",
-              speaker: "Yong-Tin Chen (陳勇廷)",
-              speakerTitle: "TWNOG Organizer",
+              speaker: "Makito Lay (趙明輝)",
+              speakerTitle: "APNIC Network Analyst / Technical Trainer",
             },
             {
               time: "12:30 - 13:30",
@@ -220,8 +220,8 @@ export const translations = {
             {
               time: "13:30 - 15:00",
               title: "IPv6 Transition Techniques",
-              speaker: "Yong-Tin Chen (陳勇廷)",
-              speakerTitle: "TWNOG Organizer",
+              speaker: "Makito Lay (趙明輝)",
+              speakerTitle: "APNIC Network Analyst / Technical Trainer",
             },
             {
               time: "15:00 - 15:30",
@@ -501,8 +501,8 @@ export const translations = {
             {
               time: "11:00 - 12:30",
               title: "IPv6 Security",
-              speaker: "Yong-Tin Chen (陳勇廷)",
-              speakerTitle: "TWNOG Organizer",
+              speaker: "Makito Lay (趙明輝)",
+              speakerTitle: "APNIC Network Analyst / Technical Trainer",
             },
             {
               time: "12:30 - 13:30",
@@ -513,8 +513,8 @@ export const translations = {
             {
               time: "13:30 - 15:00",
               title: "IPv6 Transition Techniques",
-              speaker: "Yong-Tin Chen (陳勇廷)",
-              speakerTitle: "TWNOG Organizer",
+              speaker: "Makito Lay (趙明輝)",
+              speakerTitle: "APNIC Network Analyst / Technical Trainer",
             },
             {
               time: "15:00 - 15:30",
