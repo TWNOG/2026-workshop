@@ -100,8 +100,8 @@ export const translations = {
             {
               time: "09:00 - 10:30",
               title: "IPv6 Protocol ",
-              speaker: "",
-              speakerTitle: "",
+              speaker: "Yong-Tin Chen (陳勇廷)",
+              speakerTitle: "TWNOG Organizer",
             },
             {
               time: "10:30 - 11:00",
@@ -112,8 +112,8 @@ export const translations = {
             {
               time: "11:00 - 12:30",
               title: "IPv6 Address Representation and Types",
-              speaker: "",
-              speakerTitle: "",
+              speaker: "Yong-Tin Chen (陳勇廷)",
+              speakerTitle: "TWNOG Organizer",
             },
             {
               time: "12:30 - 13:30",
@@ -124,8 +124,8 @@ export const translations = {
             {
               time: "13:30 - 15:00",
               title: "ICMPv6, NDP, and PMTUD",
-              speaker: "",
-              speakerTitle: "",
+              speaker: "Yong-Tin Chen (陳勇廷)",
+              speakerTitle: "TWNOG Organizer",
             },
             {
               time: "15:00 - 15:30",
@@ -136,8 +136,8 @@ export const translations = {
             {
               time: "15:30 - 17:00",
               title: "IPv6 Address Configuration with Static and SLAAC",
-              speaker: "",
-              speakerTitle: "",
+              speaker: "Yong-Tin Chen (陳勇廷)",
+              speakerTitle: "TWNOG Organizer",
             },
           ],
         },
@@ -148,8 +148,8 @@ export const translations = {
             {
               time: "09:00 - 10:30",
               title: "IPv6 Address Configuration with DHCPv6 ",
-              speaker: "",
-              speakerTitle: "",
+              speaker: "Makito Lay (趙明輝)",
+              speakerTitle: "APNIC Network Analyst / Technical Trainer",
             },
             {
               time: "10:30 - 11:00",
@@ -160,8 +160,8 @@ export const translations = {
             {
               time: "11:00 - 12:30",
               title: "IPv6 Subnetting and Summarization",
-              speaker: "",
-              speakerTitle: "",
+              speaker: "Makito Lay (趙明輝)",
+              speakerTitle: "APNIC Network Analyst / Technical Trainer",
             },
             {
               time: "12:30 - 13:30",
@@ -172,8 +172,20 @@ export const translations = {
             {
               time: "13:30 - 15:00",
               title: "IPv6 Address Planning",
+              speaker: "Yong-Tin Chen (陳勇廷)",
+              speakerTitle: "TWNOG Organizer",
+            },
+            {
+              time: "15:00 - 15:30",
+              title: "Break",
               speaker: "",
               speakerTitle: "",
+            },
+            {
+              time: "15:30 - 17:00",
+              title: "IPv6 Routing",
+              speaker: "Yong-Tin Chen (陳勇廷)",
+              speakerTitle: "TWNOG Organizer",
             },
           ],
         },
@@ -380,9 +392,9 @@ export const translations = {
           items: [
             {
               time: "09:00 - 10:30",
-              title: "IPv6 Protocol",
-              speaker: "",
-              speakerTitle: "",
+              title: "IPv6 Protocol ",
+              speaker: "Yong-Tin Chen (陳勇廷)",
+              speakerTitle: "TWNOG Organizer",
             },
             {
               time: "10:30 - 11:00",
@@ -393,8 +405,8 @@ export const translations = {
             {
               time: "11:00 - 12:30",
               title: "IPv6 Address Representation and Types",
-              speaker: "",
-              speakerTitle: "",
+              speaker: "Yong-Tin Chen (陳勇廷)",
+              speakerTitle: "TWNOG Organizer",
             },
             {
               time: "12:30 - 13:30",
@@ -405,8 +417,8 @@ export const translations = {
             {
               time: "13:30 - 15:00",
               title: "ICMPv6, NDP, and PMTUD",
-              speaker: "",
-              speakerTitle: "",
+              speaker: "Yong-Tin Chen (陳勇廷)",
+              speakerTitle: "TWNOG Organizer",
             },
             {
               time: "15:00 - 15:30",
@@ -417,8 +429,8 @@ export const translations = {
             {
               time: "15:30 - 17:00",
               title: "IPv6 Address Configuration with Static and SLAAC",
-              speaker: "",
-              speakerTitle: "",
+              speaker: "Yong-Tin Chen (陳勇廷)",
+              speakerTitle: "TWNOG Organizer",
             },
           ],
         },
@@ -428,9 +440,9 @@ export const translations = {
           items: [
             {
               time: "09:00 - 10:30",
-              title: "IPv6 Address Configuration with DHCPv6",
-              speaker: "",
-              speakerTitle: "",
+              title: "IPv6 Address Configuration with DHCPv6 ",
+              speaker: "Makito Lay (趙明輝)",
+              speakerTitle: "APNIC Network Analyst / Technical Trainer",
             },
             {
               time: "10:30 - 11:00",
@@ -441,8 +453,8 @@ export const translations = {
             {
               time: "11:00 - 12:30",
               title: "IPv6 Subnetting and Summarization",
-              speaker: "",
-              speakerTitle: "",
+              speaker: "Makito Lay (趙明輝)",
+              speakerTitle: "APNIC Network Analyst / Technical Trainer",
             },
             {
               time: "12:30 - 13:30",
@@ -453,8 +465,20 @@ export const translations = {
             {
               time: "13:30 - 15:00",
               title: "IPv6 Address Planning",
+              speaker: "Yong-Tin Chen (陳勇廷)",
+              speakerTitle: "TWNOG Organizer",
+            },
+            {
+              time: "15:00 - 15:30",
+              title: "Break",
               speaker: "",
               speakerTitle: "",
+            },
+            {
+              time: "15:30 - 17:00",
+              title: "IPv6 Routing",
+              speaker: "Yong-Tin Chen (陳勇廷)",
+              speakerTitle: "TWNOG Organizer",
             },
           ],
         },
@@ -478,7 +502,7 @@ export const translations = {
               time: "11:00 - 12:30",
               title: "IPv6 Security",
               speaker: "Yong-Tin Chen (陳勇廷)",
-              speakerTitle: "TWNOG Organizer",
+              speakerTitle: "",
             },
             {
               time: "12:30 - 13:30",
@@ -501,7 +525,7 @@ export const translations = {
             {
               time: "15:30 - 17:00",
               title: "IPv6 Deployment Planning",
-              speaker: "Makito Lay (趙明輝)",
+              speaker: " Makito Lay (趙明輝)",
               speakerTitle: "APNIC Network Analyst / Technical Trainer",
             },
           ],
