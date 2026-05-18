@@ -209,7 +209,7 @@ export const translations = {
               time: "11:00 - 12:30",
               title: "IPv6 Security",
               speaker: "Yong-Tin Chen (陳勇廷)",
-              speakerTitle: "",
+              speakerTitle: "TWNOG Organizer",
             },
             {
               time: "12:30 - 13:30",
